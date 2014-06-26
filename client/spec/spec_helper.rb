@@ -16,6 +16,16 @@ require File.expand_path("../../config/environment", __FILE__)
 # users commonly want.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+
+RemoteFactoryGirl.configure do |config|
+  config.home = { host: 'localhost',
+                  port: 3000,
+                  end_point: '/remote_factory_girl/home' }
+  config.return_with_root = false
+  #config.return_response_as = :dot_notation
+  #config.return_as_active_resource = true
+end
+
 RSpec.configure do |config|
 # The settings below are suggested to provide a good initial experience
 # with RSpec, but feel free to customize to your heart's content.
