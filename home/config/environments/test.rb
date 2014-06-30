@@ -35,4 +35,5 @@ Home::Application.configure do
   config.active_support.deprecation = :stderr
 
   config.remote_factory_girl_home_rails.enable = true
+  config.remote_database_cleaner_home_rails.enable = true
 end
