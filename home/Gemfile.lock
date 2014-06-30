@@ -132,7 +132,7 @@ DEPENDENCIES
   jquery-rails
   pry-rails
   rails (= 4.0.4)
-  remote_factory_girl_home_rails
+  remote_factory_girl_home_rails (~> 1.0.0)
   sass-rails (~> 4.0.2)
   sdoc
   sqlite3

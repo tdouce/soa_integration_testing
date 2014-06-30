@@ -39,7 +39,7 @@ group :test, :development do
 end
 
 group :test do
-  gem 'remote_factory_girl_home_rails'
+  gem 'remote_factory_girl_home_rails', '~> 1.0.0'
 end
 
 # Use ActiveModel has_secure_password
