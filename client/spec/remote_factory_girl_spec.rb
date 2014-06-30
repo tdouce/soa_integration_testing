@@ -38,13 +38,13 @@ describe 'working with RemoteFactoryGirl' do
         expect(user['last_name']).to eq('Iam')
       end
     end
+  end
 
-    describe '.factories' do
-      it 'should be able to retrieve a list of available factories' do
-        available_factories = RemoteFactoryGirl.factories
+  describe '.factories' do
+    it 'should be able to retrieve a list of available factories' do
+      available_factories = RemoteFactoryGirl.factories
 
-        expect(available_factories['factories']).to match_array(['school_with_principal', 'user', 'school'])
-      end
+      expect(available_factories['factories']).to match_array(['school_with_principal', 'user', 'school'])
     end
   end
 end
