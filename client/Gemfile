@@ -34,7 +34,7 @@ end
 
 group :test, :development do
   gem 'rspec-rails', '~> 3.0.0'
-  gem 'remote_factory_girl'
+  gem 'remote_factory_girl', '~> 1.0.1'
   gem 'pry-rails'
 end
 
