@@ -22,6 +22,15 @@ describe 'working with RemoteFactoryGirl' do
       expect(user['last_name']).to eq('Iam')
     end
 
+    it "should create test data in 'home' from 'client'" do
+      user_created_from_client = RemoteFactoryGirl.create(:user, first_name: 'Sam')
+      # Make http request to 'home' and retrieve all users
+      all_users_in_home        = fetch_users
+      user_from_home           = all_users_in_home.detect {|user| user['first_name'] == user['first_name']}
+
+      expect(user_created_from_client['first_name']).to eq(user_from_home['first_name'])
+    end
+
     describe 'associations' do
       it 'should be able to create associations using factories' do
         school_with_principal = RemoteFactoryGirl.create(:school_with_principal, name: 'Tift County High School')
