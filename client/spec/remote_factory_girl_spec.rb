@@ -22,6 +22,23 @@ describe 'working with RemoteFactoryGirl' do
       expect(user['last_name']).to eq('Iam')
     end
 
+    describe 'associations' do
+      it 'should be able to create associations using factories' do
+        school_with_principal = RemoteFactoryGirl.create(:school_with_principal, name: 'Tift County High School')
+
+        expect(school_with_principal['name']).to eq('Tift County High School')
+      end
+
+      it 'should be able to manually create an assocation between a user and a school' do
+        school = RemoteFactoryGirl.create(:school, name: 'Tift County High School')
+        user   = RemoteFactoryGirl.create(:user, first_name: 'Sam', last_name: 'Iam', school_id: school.fetch('id'))
+
+        expect(school['name']).to eq('Tift County High School')
+        expect(user['first_name']).to eq('Sam')
+        expect(user['last_name']).to eq('Iam')
+      end
+    end
+
     describe '.factories' do
       it 'should be able to retrieve a list of available factories' do
         available_factories = RemoteFactoryGirl.factories
