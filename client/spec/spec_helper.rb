@@ -103,7 +103,7 @@ def home
 end
 
 def fetch_users
-  json = RestClient.get "#{ home }/users", {:accept => :json}
+  json = RestClient.get "#{ home }/users", {:params => {:just_retrieving_users_to_prove_they_exist_in_test => true}, :accept => :json}
   parse_json(json)
 end
 
