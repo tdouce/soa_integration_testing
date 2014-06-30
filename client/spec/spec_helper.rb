@@ -102,13 +102,23 @@ def home
   "http://#{ RemoteFactoryGirl.config.home[:host] }:#{ RemoteFactoryGirl.config.home[:port] }"
 end
 
-def fetch_users
+def fetch_users_from_home
   json = RestClient.get "#{ home }/users", {:params => {:just_retrieving_users_to_prove_they_exist_in_test => true}, :accept => :json}
   parse_json(json)
 end
 
-def fetch_schools
-  json = RestClient.get "#{ home }/schools", {:accept => :json}
+def fetch_user_by_id_from_home(id)
+  json = RestClient.get "#{ home }/users/#{ id }", {:params => {:just_retrieving_users_to_prove_they_exist_in_test => true}, :accept => :json}
+  parse_json(json)
+end
+
+def fetch_schools_from_home
+  json = RestClient.get "#{ home }/schools", {:params => {:just_retrieving_users_to_prove_they_exist_in_test => true}, :accept => :json}
+  parse_json(json)
+end
+
+def fetch_school_by_id_from_home(id)
+  json = RestClient.get "#{ home }/schools/#{ id }", {:params => {:just_retrieving_users_to_prove_they_exist_in_test => true}, :accept => :json}
   parse_json(json)
 end
 
