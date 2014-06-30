@@ -1,20 +1,20 @@
 require 'spec_helper'
 
-# See spec/spec_helper.rb for configuring RemoteFactoryGirl (i.e. client) to 
-# coordinate with RemoteFactoryGirlHomeRails (i.e. home)
-
+# TODO: Add links when repo is available on github
+#
+# 1. See spec/spec_helper.rb for configuring RemoteFactoryGirl (i.e. client) to 
+#    coordinate with RemoteFactoryGirlHomeRails (i.e. home)
+# 2. Requires that factories be set up correctly in 'home'
+#
 describe 'working with RemoteFactoryGirl' do
   describe '#create' do
 
-    # Requires that a factory be defined in 'home' with name 'user'
     it 'should be able to create a user' do
       user = RemoteFactoryGirl.create(:user)
 
       expect(user).to have_key('first_name')
     end
 
-    # Requires that a factory be defined in 'home' with name 'user' and have #first_name
-    # and #last_name attributes
     it 'should be able to create a user with custom attributes' do
       user = RemoteFactoryGirl.create(:user, first_name: 'Sam', last_name: 'Iam')
 
@@ -32,6 +32,7 @@ describe 'working with RemoteFactoryGirl' do
     end
 
     describe 'associations' do
+
       it 'should be able to create associations using factories' do
         school_with_principal = RemoteFactoryGirl.create(:school_with_principal, name: 'Tift County High School')
 
