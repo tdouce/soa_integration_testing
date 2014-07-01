@@ -1,10 +1,8 @@
 require 'spec_helper'
 
-# TODO: Add links when repo is available on github
-#
 # 1. See spec/spec_helper.rb for configuring RemoteDatabaseCleaner (i.e. client) to
 #    coordinate with RemoteFactoryGirlHomeRails (i.e. home)
-# 2. Requires that factories be set up correctly in 'home'
+#     - https://github.com/tdouce/soa_integration_testing/blob/master/client/spec/spec_helper.rb#L37
 #
 describe 'working with RemoteDatabaseCleaner' do
   describe '#clean' do
