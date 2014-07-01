@@ -6,9 +6,6 @@ require 'spec_helper'
 #
 describe 'working with RemoteDatabaseCleaner' do
   describe '#clean' do
-
-    # RemoteDatabaseCleaner is configured to clean 'home' db before each spec.
-    # See spec/spec_helper
     it 'should clean database before each spec' do
       user = RemoteFactoryGirl.create(:user)
 
