@@ -11,7 +11,7 @@ A sample application to demonstrate integration testing Rails [SOA](http://en.wi
 
 ### Bootstrap Applications
 ```
-bin/bootstrap.sh
+cd soa_integration_testing/ && bin/bootstrap.sh
 ```
 
 ### Run 'client' test suite
