@@ -34,6 +34,12 @@ RemoteFactoryGirl.configure do |config|
   #config.return_as_active_resource = true
 end
 
+# 'home' (the application where the test data must be created) must:
+#   1. Have the gem 'remote_database_cleaner_home_rails' installed and configured
+#   2. The 'home' server must be running on the port and host configured below,
+#      and be available a the end_point prior to running tests in the 'client'
+#      (i.e. this application) 
+#
 RemoteDatabaseCleaner.configure do |config|
   config.home = { host: 'localhost',
                   port: 3000,
