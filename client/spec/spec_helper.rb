@@ -37,14 +37,14 @@ end
 # If you needed to create data in another 'home' (i.e. home_2), then you can configure
 # a second 'home'
 #
-#RemoteFactoryGirl.configure(:home_2) do |config|
-#  config.home = { host: 'localhost',
-#                  port: 4000,
-#                  end_point: '/remote_factory_girl/home' }
-#  config.return_with_root = false
-#  #config.return_response_as = :dot_notation
-#  #config.return_as_active_resource = true
-#end
+RemoteFactoryGirl.configure(:home_2) do |config|
+  config.home = { host: 'localhost',
+                  port: 4000,
+                  end_point: '/remote_factory_girl/home' }
+  config.return_with_root = false
+  #config.return_response_as = :dot_notation
+  #config.return_as_active_resource = true
+end
 
 
 # 'home' (the application where the test data must be created) must:
