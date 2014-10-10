@@ -1,0 +1,27 @@
+<h1>Listing animals</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>First name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @animals.each do |animal| %>
+      <tr>
+        <td><%= animal.first_name %></td>
+        <td><%= link_to 'Show', animal %></td>
+        <td><%= link_to 'Edit', edit_animal_path(animal) %></td>
+        <td><%= link_to 'Destroy', animal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Animal', new_animal_path %>
