@@ -25,7 +25,7 @@ require 'rest_client'
 #      and be available a the end_point prior to running tests in the 'client'
 #      (i.e. this application) 
 #
-RemoteFactoryGirl.configure do |config|
+RemoteFactoryGirl.configure(:home_1) do |config|
   config.home = { host: 'localhost',
                   port: 3000,
                   end_point: '/remote_factory_girl/home' }
@@ -33,6 +33,19 @@ RemoteFactoryGirl.configure do |config|
   #config.return_response_as = :dot_notation
   #config.return_as_active_resource = true
 end
+
+# If you needed to create data in another 'home' (i.e. home_2), then you can configure
+# a second 'home'
+#
+#RemoteFactoryGirl.configure(:home_2) do |config|
+#  config.home = { host: 'localhost',
+#                  port: 4000,
+#                  end_point: '/remote_factory_girl/home' }
+#  config.return_with_root = false
+#  #config.return_response_as = :dot_notation
+#  #config.return_as_active_resource = true
+#end
+
 
 # 'home' (the application where the test data must be created) must:
 #   1. Have the gem 'remote_database_cleaner_home_rails' installed and configured
@@ -54,7 +67,7 @@ end
 
 #### Helpers used to help prove RemoteFactoryGirl created test data #####
 def home
-  "http://#{ RemoteFactoryGirl.config.home[:host] }:#{ RemoteFactoryGirl.config.home[:port] }"
+  "http://#{ RemoteFactoryGirl.config(:home_1).home[:host] }:#{ RemoteFactoryGirl.config(:home_1).home[:port] }"
 end
 
 def fetch_users_from_home
