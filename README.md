@@ -7,6 +7,11 @@ A sample application to demonstrate integration testing Rails [SOA](http://en.wi
   3. [remote_database_cleaner](https://github.com/tdouce/remote_database_cleaner)
   4. [remote_database_cleaner_home_rails](https://github.com/tdouce/remote_database_cleaner_home_rails)
 
+## Description
+This repo contains one "client" (`client`) application and two "home" applications (`home`
+and `home_2`). The `client` application is configured to create test data in two
+different "home" applications (`home` and `home_2`).
+
 ## Getting Started
 
 ### Bootstrap Applications
