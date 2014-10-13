@@ -66,22 +66,22 @@ RSpec.configure do |config|
 end
 
 #### Helpers used to help prove RemoteFactoryGirl created test data #####
-def home
-  "http://#{ RemoteFactoryGirl.config(:home_1).home[:host] }:#{ RemoteFactoryGirl.config(:home_1).home[:port] }"
+def home(remote_name)
+  "http://#{ RemoteFactoryGirl.config(remote_name).home[:host] }:#{ RemoteFactoryGirl.config(remote_name).home[:port] }"
 end
 
 def fetch_users_from_home
-  json = RestClient.get "#{ home }/users", {:params => {:just_retrieving_resources_to_prove_they_exist_in_client_test => true}, :accept => :json}
+  json = RestClient.get "#{ home(:home_1) }/users", {:params => {:just_retrieving_resources_to_prove_they_exist_in_client_test => true}, :accept => :json}
   parse_json(json)
 end
 
 def fetch_user_by_id_from_home(id)
-  json = RestClient.get "#{ home }/users/#{ id }", {:params => {:just_retrieving_resources_to_prove_they_exist_in_client_test => true}, :accept => :json}
+  json = RestClient.get "#{ home(:home_1) }/users/#{ id }", {:params => {:just_retrieving_resources_to_prove_they_exist_in_client_test => true}, :accept => :json}
   parse_json(json)
 end
 
 def fetch_school_by_id_from_home(id)
-  json = RestClient.get "#{ home }/schools/#{ id }", {:params => {:just_retrieving_resources_to_prove_they_exist_in_client_test => true}, :accept => :json}
+  json = RestClient.get "#{ home(:home_1) }/schools/#{ id }", {:params => {:just_retrieving_resources_to_prove_they_exist_in_client_test => true}, :accept => :json}
   parse_json(json)
 end
 
