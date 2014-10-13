@@ -72,6 +72,12 @@ describe 'working with RemoteFactoryGirl' do
       end
     end
 
+    context 'with remote "home_2"' do
+      it 'should be able to retrieve a list of available factories' do
+        available_factories = RemoteFactoryGirl.with_remote(:home_2).factories
+
+        expect(available_factories['factories']).to match_array(['animal'])
+      end
     end
   end
 end
