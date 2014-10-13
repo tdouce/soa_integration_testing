@@ -44,7 +44,7 @@ GEM
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
     diff-lcs (1.2.5)
-    dish (0.0.3)
+    dish (0.0.4)
     equalizer (0.0.9)
     erubis (2.7.0)
     execjs (2.0.2)
@@ -94,7 +94,7 @@ GEM
     remote_database_cleaner (0.0.1)
       rest-client
       virtus (~> 1.0)
-    remote_factory_girl (1.0.1)
+    remote_factory_girl (1.1.0)
       dish
       rest-client
     rest-client (1.6.7)
@@ -162,7 +162,7 @@ DEPENDENCIES
   pry-rails
   rails (= 4.0.4)
   remote_database_cleaner (~> 0.0.1)
-  remote_factory_girl (~> 1.0.1)
+  remote_factory_girl (~> 1.1.0)
   rspec-rails (~> 3.0.0)
   sass-rails (~> 4.0.2)
   sdoc
