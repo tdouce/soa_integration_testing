@@ -85,6 +85,11 @@ def fetch_school_by_id_from_home(id)
   parse_json(json)
 end
 
+def fetch_animal_by_id_from_home_2(id)
+  json = RestClient.get "#{ home(:home_2) }/animals/#{ id }", {:params => {:just_retrieving_resources_to_prove_they_exist_in_client_test => true}, :accept => :json}
+  parse_json(json)
+end
+
 def parse_json(json)
   JSON.parse(json)
 end
