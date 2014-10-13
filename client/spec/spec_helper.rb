@@ -27,7 +27,7 @@ require 'rest_client'
 #
 RemoteFactoryGirl.configure do |config|
   config.home = { host: 'localhost',
-                  port: 3000,
+                  port: 3001,
                   end_point: '/remote_factory_girl/home' }
   config.return_with_root = false
   #config.return_response_as = :dot_notation
@@ -42,13 +42,42 @@ end
 #
 RemoteDatabaseCleaner.configure do |config|
   config.home = { host: 'localhost',
-                  port: 3000,
+                  port: RemoteFactoryGirl.config.home[:port],
                   end_point: '/remote_database_cleaner/home/clean' }
 end
+
+pids_dir = Rails.root.join('tmp', 'pids')
+FileUtils.mkdir_p(pids_dir) unless File.directory?(pids_dir)
+HOME_PID = File.join(pids_dir, 'home-test.pid')
+HOME_SRC_DIR = '/Users/travisdouce/code/my_gems/soa_integration_testing/home'
 
 RSpec.configure do |config|
   config.before(:each) do
     RemoteDatabaseCleaner.clean
+  end
+
+  config.before(:suite) do
+    Bundler.with_clean_env do
+      Dir.chdir(HOME_SRC_DIR) do
+        puts "[HOME] Starting test HOME server..."
+        `./bin/rails server --daemon --environment=test --pid=#{ HOME_PID } --port=#{ RemoteFactoryGirl.config.home[:port] }`
+
+        puts "[HOME] Preparing test HOME database..."
+        `bin/rake db:setup RAILS_ENV=test`
+      end
+    end
+  end
+
+  config.after(:suite) do
+    puts "\n[HOME] Stopping test HOME server..."
+    `cat #{ HOME_PID } | xargs kill -QUIT`
+
+    Bundler.with_clean_env do
+      Dir.chdir(HOME_SRC_DIR) do
+        puts "[HOME] Destroying test HOME database..."
+        `bin/rake db:reset RAILS_ENV=test`
+      end
+    end
   end
 end
 
