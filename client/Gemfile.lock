@@ -44,7 +44,7 @@ GEM
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
     diff-lcs (1.2.5)
-    dish (0.0.3)
+    dish (0.0.4)
     equalizer (0.0.9)
     erubis (2.7.0)
     execjs (2.0.2)
