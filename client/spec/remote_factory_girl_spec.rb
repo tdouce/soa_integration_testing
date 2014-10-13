@@ -46,10 +46,19 @@ describe 'working with RemoteFactoryGirl' do
       end
     end
 
+    context 'with remote "home_2"' do
+      it 'should be able to create an animal' do
+        animal           = RemoteFactoryGirl.with_remote(:home_2).create(:animal)
+        animal_from_home = fetch_animal_by_id_from_home_2(animal['id'])
 
+        expect(animal['first_name']).to eq(animal_from_home['first_name'])
       end
 
+      it 'should be able to create an animal with custom attributes' do
+        animal           = RemoteFactoryGirl.with_remote(:home_2).create(:animal, first_name: 'Spot')
+        animal_from_home = fetch_animal_by_id_from_home_2(animal['id'])
 
+        expect(animal['first_name']).to eq(animal_from_home['first_name'])
       end
     end
   end
