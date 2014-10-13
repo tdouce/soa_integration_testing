@@ -33,4 +33,6 @@ Home2::Application.configure do
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
+
+  config.remote_factory_girl_home_rails.enable = true
 end
