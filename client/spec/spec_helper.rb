@@ -57,28 +57,36 @@ RSpec.configure do |config|
   end
 
   config.before(:suite) do
-    Bundler.with_clean_env do
-      Dir.chdir(HOME_SRC_DIR) do
-        puts "[HOME] Starting test HOME server..."
-        `./bin/rails server --daemon --environment=test --pid=#{ HOME_PID } --port=#{ RemoteFactoryGirl.config.home[:port] }`
+    if auto_start_dependent_services?
+      Bundler.with_clean_env do
+        Dir.chdir(HOME_SRC_DIR) do
+          puts "[HOME] Starting test HOME server..."
+          `./bin/rails server --daemon --environment=test --pid=#{ HOME_PID } --port=#{ RemoteFactoryGirl.config.home[:port] }`
 
-        puts "[HOME] Preparing test HOME database..."
-        `bin/rake db:setup RAILS_ENV=test`
+          puts "[HOME] Preparing test HOME database..."
+          `bin/rake db:setup RAILS_ENV=test`
+        end
       end
     end
   end
 
   config.after(:suite) do
-    puts "\n[HOME] Stopping test HOME server..."
-    `cat #{ HOME_PID } | xargs kill -QUIT`
+    if auto_start_dependent_services?
+      puts "\n[HOME] Stopping test HOME server..."
+      `cat #{ HOME_PID } | xargs kill -QUIT`
 
-    Bundler.with_clean_env do
-      Dir.chdir(HOME_SRC_DIR) do
-        puts "[HOME] Destroying test HOME database..."
-        `bin/rake db:reset RAILS_ENV=test`
+      Bundler.with_clean_env do
+        Dir.chdir(HOME_SRC_DIR) do
+          puts "[HOME] Destroying test HOME database..."
+          `bin/rake db:reset RAILS_ENV=test`
+        end
       end
     end
   end
+end
+
+def auto_start_dependent_services?
+  ENV['DEP_SERVICES'] == 'auto_start'
 end
 
 #### Helpers used to help prove RemoteFactoryGirl created test data #####
