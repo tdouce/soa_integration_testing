@@ -67,6 +67,8 @@ RSpec.configure do |config|
           `bin/rake db:setup RAILS_ENV=test`
         end
       end
+    else
+      RemoteDatabaseCleaner.clean
     end
   end
 
