@@ -52,10 +52,6 @@ HOME_PID = File.join(pids_dir, 'home-test.pid')
 HOME_SRC_DIR = '/Users/travisdouce/code/my_gems/soa_integration_testing/home'
 
 RSpec.configure do |config|
-  config.after(:each) do
-    RemoteDatabaseCleaner.clean
-  end
-
   config.before(:suite) do
     if auto_start_dependent_services?
       Dir.chdir(HOME_SRC_DIR) do
@@ -70,6 +66,10 @@ RSpec.configure do |config|
     else
       RemoteDatabaseCleaner.clean
     end
+  end
+
+  config.after(:each) do
+    RemoteDatabaseCleaner.clean
   end
 
   config.after(:suite) do
