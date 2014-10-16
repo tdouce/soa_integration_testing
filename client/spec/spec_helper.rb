@@ -76,13 +76,6 @@ RSpec.configure do |config|
     if auto_start_dependent_services?
       puts "\n[HOME] Stopping test HOME server..."
       `cat #{ HOME_PID } | xargs kill -QUIT`
-
-      Bundler.with_clean_env do
-        Dir.chdir(HOME_SRC_DIR) do
-          puts "[HOME] Destroying test HOME database..."
-          `bin/rake db:reset RAILS_ENV=test`
-        end
-      end
     end
   end
 end
