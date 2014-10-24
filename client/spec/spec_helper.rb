@@ -48,16 +48,16 @@ end
 
 pids_dir = Rails.root.join('tmp', 'pids')
 FileUtils.mkdir_p(pids_dir) unless File.directory?(pids_dir)
-HOME_PID = File.join(pids_dir, 'home-test.pid')
-HOME_SRC_DIR = '/Users/travisdouce/code/my_gems/soa_integration_testing/home'
+home_pid = File.join(pids_dir, 'home-test.pid')
+home_src_dir = '/Users/travisdouce/code/my_gems/soa_integration_testing/home'
 
 RSpec.configure do |config|
   config.before(:suite) do
     if auto_start_dependent_services?
-      Dir.chdir(HOME_SRC_DIR) do
+      Dir.chdir(home_src_dir) do
         Bundler.with_clean_env do
           puts '[HOME] Starting test HOME server...'
-          `./bin/rails server --daemon --environment=test --pid=#{ HOME_PID } --port=#{ RemoteFactoryGirl.config.home[:port] }`
+          `./bin/rails server --daemon --environment=test --pid=#{ home_pid } --port=#{ RemoteFactoryGirl.config.home[:port] }`
 
           puts "[HOME] Preparing test HOME database..."
           `bin/rake db:setup RAILS_ENV=test`
@@ -75,7 +75,7 @@ RSpec.configure do |config|
   config.after(:suite) do
     if auto_start_dependent_services?
       puts '\n[HOME] Stopping test HOME server...'
-      `cat #{ HOME_PID } | xargs kill -QUIT`
+      `cat #{ home_pid } | xargs kill -QUIT`
     end
   end
 end
