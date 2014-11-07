@@ -11,7 +11,7 @@ describe 'working with RemoteDatabaseCleaner' do
 
       expect(fetch_users_from_home.length).to eq(1)
 
-      RemoteDatabaseCleaner.clean
+      RemoteDatabaseCleaner.with_remote(:home_1).clean
 
       expect(fetch_users_from_home.length).to eq(0)
     end

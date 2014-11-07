@@ -53,15 +53,22 @@ end
 #      and be available a the end_point prior to running tests in the 'client'
 #      (i.e. this application) 
 #
-RemoteDatabaseCleaner.configure do |config|
+RemoteDatabaseCleaner.configure(:home_1) do |config|
   config.home = { host: 'localhost',
-                  port: 3000,
+                  port: RemoteFactoryGirl.config(:home_1).home[:port],
+                  end_point: '/remote_database_cleaner/home/clean' }
+end
+
+RemoteDatabaseCleaner.configure(:home_2) do |config|
+  config.home = { host: 'localhost',
+                  port: RemoteFactoryGirl.config(:home_2).home[:port],
                   end_point: '/remote_database_cleaner/home/clean' }
 end
 
 RSpec.configure do |config|
   config.before(:each) do
-    RemoteDatabaseCleaner.clean
+    RemoteDatabaseCleaner.with_remote(:home_1).clean
+    RemoteDatabaseCleaner.with_remote(:home_2).clean
   end
 end
 
