@@ -4,6 +4,11 @@ Home2::Application.routes.draw do
   if defined?(RemoteFactoryGirlHomeRails::Engine)
     mount RemoteFactoryGirlHomeRails::Engine, at: '/remote_factory_girl'
   end
+
+  if defined?(RemoteDatabaseCleanerHomeRails::Engine)
+    mount RemoteDatabaseCleanerHomeRails::Engine, at: '/remote_database_cleaner'
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
