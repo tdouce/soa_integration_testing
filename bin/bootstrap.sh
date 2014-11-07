@@ -27,15 +27,10 @@ HOME=$PWD/home
 CLIENT=$PWD/client
 
 function run_tests {
-  echo "1. cd to 'home' directory by executing:"
-  echo "   $ cd $HOME"
-  echo "2. Start 'home' application's server on port '3000' in 'test' environment by executing:"
-  echo "   $ bundle exec rails server --environment=test --pid=$HOME/tmp/pids/home-test.pid --port=3000"
-  echo "3. Open a new tab and cd to the 'client' by executing:"
+  echo "1. Open a new tab and cd to the 'client' by executing:"
   echo "   $ cd $CLIENT"
-  echo "4. In the 'client' directory, run the 'client' test suite by executing:"
-  echo "   $ bundle exec rspec"
-
+  echo "2. In the 'client' directory, run the 'client' test suite by executing:"
+  echo "   $ DEP_SERVICES=auto_start bundle exec rspec"
 }
 
 printf "\e[36m"
