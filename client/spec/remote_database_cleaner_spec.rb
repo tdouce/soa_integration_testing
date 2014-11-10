@@ -6,14 +6,16 @@ require 'spec_helper'
 #
 describe 'working with RemoteDatabaseCleaner' do
   describe '#clean' do
-    it 'should clean database before each spec' do
-      user = RemoteFactoryGirl.with_remote(:home_1).create(:user)
+    context "with remote 'home_1' " do
+      it 'should clean database before each spec' do
+        user = RemoteFactoryGirl.with_remote(:home_1).create(:user)
 
-      expect(fetch_users_from_home.length).to eq(1)
+        expect(fetch_users_from_home.length).to eq(1)
 
-      RemoteDatabaseCleaner.with_remote(:home_1).clean
+        RemoteDatabaseCleaner.with_remote(:home_1).clean
 
-      expect(fetch_users_from_home.length).to eq(0)
+        expect(fetch_users_from_home.length).to eq(0)
+      end
     end
   end
 end
