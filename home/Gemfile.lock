@@ -89,7 +89,7 @@ GEM
       json (~> 1.4)
     remote_database_cleaner_home_rails (0.0.1)
       rails (~> 4.0.2)
-    remote_factory_girl_home_rails (1.0.0)
+    remote_factory_girl_home_rails (1.0.1)
       rails (~> 4.0.2)
     sass (3.2.19)
     sass-rails (4.0.3)
@@ -137,7 +137,7 @@ DEPENDENCIES
   pry-rails
   rails (= 4.0.4)
   remote_database_cleaner_home_rails (~> 0.0.1)
-  remote_factory_girl_home_rails (~> 1.0.0)
+  remote_factory_girl_home_rails (~> 1.0.1)
   sass-rails (~> 4.0.2)
   sdoc
   sqlite3

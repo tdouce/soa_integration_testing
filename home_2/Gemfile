@@ -39,7 +39,7 @@ group :test, :development do
 end
 
 group :test do
-  gem 'remote_factory_girl_home_rails', '~> 1.0.0'
+  gem 'remote_factory_girl_home_rails', '~> 1.0.1'
   gem 'remote_database_cleaner_home_rails', '~> 0.0.1'
   gem 'database_cleaner', '>= 1.3.0'
 end
